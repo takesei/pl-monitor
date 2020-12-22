@@ -1,0 +1,6 @@
+{
+  "dir_name": "mlflow",
+  "experiment_name": "default",
+  "kedro_version": "{{ cookiecutter.kedro_version }}",
+  "kedro_monitor_version": "{{ cookiecutter.kedro_monitor_version }}"
+}
