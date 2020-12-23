@@ -108,8 +108,15 @@ def _create_new_mlflow(name: str, output_dir: Path, pkg_name: str) -> Path:
     default="local",
     help="The environment within conf folder we want to retrieve.",
 )
+@click.option(
+    "--conf",
+    "-c",
+    required=False,
+    default="",
+    help="The environment within conf folder we want to retrieve.",
+)
 @click.pass_obj
-def ui(meta: ProjectMetadata, env):
+def ui(meta: ProjectMetadata, env, conf):
     """Opens the mlflow user interface with the
     project-specific settings of mlflow.yml. This interface
     enables to browse and compares runs.
@@ -119,12 +126,14 @@ def ui(meta: ProjectMetadata, env):
     context = session.load_context()
     mlflow_conf = get_monitor_config(context, "mlflow")
 
+    if conf == "":
+        conf = mlflow_conf["mlflow_tracking_uri"]
     # call mlflow ui with specific options
     subprocess.call([
         "mlflow",
         "ui",
         "--backend-store-uri",
-        mlflow_conf["mlflow_tracking_uri"]
+        conf
     ])
 
 

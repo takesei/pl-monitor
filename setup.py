@@ -5,8 +5,8 @@ setup(
         "kedro.project_commands": [
             "kedro_monitor = kedro_monitor.frameworks.cli.cli:commands"
         ],
-        # "kedro.hooks": [
-        #     "kedro_monitor = kedro_monitor.plugin:hooks"
-        # ]
+        "kedro.hooks": [
+            "kedro_monitor_mlflow = kedro_monitor.mlflow.hooks:mlflow_hook"
+        ]
     }
 )
